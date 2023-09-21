@@ -4,8 +4,17 @@ import { useState, useEffect } from "react";
 import { Categories } from "@/types/types";
 
 const SortAndFilter: React.FC = () => {
-  const { products } = useProductStore();
+  const { products, filterProductsByCategory } = useProductStore();
   const [categories, setCategories] = useState<Categories[] | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState("filter-by");
+
+  const categoriesChangeHandler = async (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const value = e.target.value;
+    setSelectedCategory(value);
+    filterProductsByCategory(value);
+  };
 
   useEffect(() => {
     fetch("https://dummyjson.com/products/categories")
@@ -17,8 +26,12 @@ const SortAndFilter: React.FC = () => {
     <>
       {products.length ? (
         <div className="bg-fosemiDark">
-          <select name="Filter By">
-            <option value="Filter by">Filter by</option>
+          <select
+            name="FilterBy"
+            value={selectedCategory}
+            onChange={categoriesChangeHandler}
+          >
+            <option value="filter-by">Filter by</option>
             {categories?.map((category, index) => (
               <option key={index} value={category}>
                 {category.charAt(0).toUpperCase() + category.slice(1)}

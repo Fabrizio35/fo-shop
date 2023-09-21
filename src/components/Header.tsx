@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 const Header: React.FC = () => {
   const path = usePathname();
   const router = useRouter();
-  const { products, setProducts, resetProducts } = useProductStore();
+  const { products, setProductsByInput, resetProducts } = useProductStore();
 
   const [searchInput, setSearchInput] = useState<string>("");
 
@@ -26,7 +26,7 @@ const Header: React.FC = () => {
 
   const keyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const key = e.key;
-    if (key === "Enter") setProducts(searchInput);
+    if (key === "Enter") setProductsByInput(searchInput);
   };
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const Header: React.FC = () => {
                   className="bg-foorangeFullLight border-2 border-foorangeFullLight h-8 w-60 text-fosemiDark focus:outline-none focus:border-fosemiDarkLight p-2 hover:border-fosemiDarkLight hover:transition-colors duration-300"
                 />
                 <button
-                  onClick={() => setProducts(searchInput)}
+                  onClick={() => setProductsByInput(searchInput)}
                   className="bg-foorangeFullLight text-fosemiDarkLight h-8 flex items-center px-2 cursor-pointer hover:text-fodark hover:transition-colors duration-300 border-2 border-foorangeFullLight hover:border-fosemiDarkLight"
                 >
                   <SearchIcon />

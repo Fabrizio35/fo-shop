@@ -23,8 +23,9 @@ const NewProduct: React.FC = () => {
               src={newProduct?.images[3]}
               alt={`${newProduct?.title} image`}
               fill
-              priority
-              sizes="(max-width: 0) auto"
+              priority={true}
+              loading="eager"
+              sizes="(max-width: 1px) auto"
               className="rounded-bl-xl border-t-2 border-l-2 border-b-2 border-gray-200 object-cover"
             />
             <div className="w-full bg-black/80 p-6 absolute bottom-0 flex flex-col items-center select-none rounded-bl-xl gap-4">
@@ -47,7 +48,9 @@ const NewProduct: React.FC = () => {
               src={newProduct?.images[0]}
               alt={`${newProduct?.title} image`}
               fill
-              sizes="(max-width: 0) auto"
+              priority={true}
+              loading="eager"
+              sizes="(max-width: 1px) auto"
               className="rounded-br-xl object-cover"
             />
           </div>

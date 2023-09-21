@@ -19,8 +19,8 @@ const ProductCard: React.FC<Props> = ({ product }) => {
           src={product.thumbnail}
           alt={`${product.title} image`}
           fill
-          priority
-          sizes="(max-width: 0) auto"
+          priority={true}
+          sizes="(max-width: 1px) auto"
           className="object-cover rounded-t-lg"
         />
       </div>
