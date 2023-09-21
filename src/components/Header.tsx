@@ -24,6 +24,11 @@ const Header: React.FC = () => {
     setSearchInput(value);
   };
 
+  const keyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const key = e.key;
+    if (key === "Enter") setProducts(searchInput);
+  };
+
   useEffect(() => {
     if (products.length <= 0) router.push("/");
   }, []);
@@ -45,9 +50,10 @@ const Header: React.FC = () => {
               <div className="flex">
                 <input
                   type="text"
-                  placeholder="Search for a product"
+                  placeholder="Search for a product..."
                   value={searchInput}
                   onChange={changeHandler}
+                  onKeyDown={keyDownHandler}
                   className="bg-foorangeFullLight border-2 border-foorangeFullLight h-8 w-60 text-fosemiDark focus:outline-none focus:border-fosemiDarkLight p-2 hover:border-fosemiDarkLight hover:transition-colors duration-300"
                 />
                 <button

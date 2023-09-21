@@ -47,7 +47,8 @@ export const useProductStore = create<ProductStore>(
       );
       const data = await response.json();
       const productsRaw = data.products;
-      const products = productsRaw.length > 0 ? productsRaw : allProducts;
+      const products =
+        productsRaw.length <= 0 || input === "" ? allProducts : productsRaw;
       const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
       set((state) => ({
         ...state,

@@ -38,13 +38,9 @@ const Pagination: React.FC = () => {
               key={pageNumber}
               onClick={() => setCurrentPage(pageNumber)}
               className={`${
-                pageNumber === currentPage ? "text-folight" : "text-fodark"
-              } ${
-                pageNumber === currentPage ? "bg-foorange" : "bg-transparent"
-              } ${
                 pageNumber === currentPage
-                  ? "hover:bg-foorange"
-                  : "hover:bg-gray-200"
+                  ? "text-folight bg-foorange"
+                  : "text-fodark hover:bg-gray-200"
               } py-1 px-3 rounded-md text-xl hover:transition-colors duration-300`}
             >
               {pageNumber}

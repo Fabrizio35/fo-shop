@@ -6,7 +6,7 @@ const CartProductsList: React.FC = () => {
   const { cart } = useProductStore();
 
   return (
-    <div className="flex flex-col mt-10 gap-10">
+    <div className="flex flex-col mt-10 gap-8">
       {cart.map((product) => (
         <CartProductCard key={product.id} product={product} />
       ))}

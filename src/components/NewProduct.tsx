@@ -8,24 +8,20 @@ const NewProduct: React.FC = () => {
   const { products } = useProductStore();
   const [newProduct, setNewProduct] = useState<Product | null>(null);
 
-  const getNewProduct = async () => {
-    const response = await fetch("https://dummyjson.com/products/1");
-    const newProduct = await response.json();
-    setNewProduct(newProduct);
-  };
-
   useEffect(() => {
-    getNewProduct();
+    fetch("https://dummyjson.com/products/1")
+      .then((res) => res.json())
+      .then((data) => setNewProduct(data));
   }, []);
 
   return (
     <>
       {products.length && newProduct ? (
-        <section className="flex mb-20">
+        <section className="flex mb-28">
           <div className="relative h-96 w-2/4">
             <Image
-              src={newProduct.images[3]}
-              alt={`${newProduct.title} image`}
+              src={newProduct?.images[3]}
+              alt={`${newProduct?.title} image`}
               fill
               priority
               sizes="(max-width: 0) auto"
@@ -37,21 +33,20 @@ const NewProduct: React.FC = () => {
                   ¡NEW!
                 </span>
                 <span className="text-2xl text-gray-200">
-                  {newProduct.brand}
+                  {newProduct?.brand}
                 </span>
                 <span className="text-3xl text-fosemiLight font-semibold">
-                  {newProduct.title}
+                  {newProduct?.title}
                 </span>
               </div>
-              <p className="text-gray-300 text-xl">{newProduct.description}</p>
+              <p className="text-gray-300 text-xl">{newProduct?.description}</p>
             </div>
           </div>
           <div className="relative h-96 w-2/4">
             <Image
-              src={newProduct.images[0]}
-              alt={`${newProduct.title} image`}
+              src={newProduct?.images[0]}
+              alt={`${newProduct?.title} image`}
               fill
-              priority
               sizes="(max-width: 0) auto"
               className="rounded-br-xl object-cover"
             />
