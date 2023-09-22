@@ -10,9 +10,8 @@ interface ProductStore {
   totalPages: number;
   ITEMS_PER_PAGE: number;
   getProducts: () => void;
-  setProductsByInput: (input: string) => void;
+  searchProducts: (input: string) => void;
   filterProductsByCategory: (category: string) => void;
-  resetProducts: () => void;
   addCart: (product: Product) => void;
   removeCart: (id: number, price: number) => void;
   setCurrentPage: (page: number) => void;
@@ -41,7 +40,7 @@ export const useProductStore = create<ProductStore>(
         allProducts,
       }));
     },
-    setProductsByInput: async (input: string) => {
+    searchProducts: async (input: string) => {
       const { ITEMS_PER_PAGE, allProducts } = get();
       const response = await fetch(
         `https://dummyjson.com/products/search?q=${input}`
@@ -70,16 +69,6 @@ export const useProductStore = create<ProductStore>(
       set((state) => ({
         ...state,
         products,
-        totalPages,
-        currentPage: 1,
-      }));
-    },
-    resetProducts: () => {
-      const { allProducts, ITEMS_PER_PAGE } = get();
-      const totalPages = Math.ceil(allProducts.length / ITEMS_PER_PAGE);
-      set((state) => ({
-        ...state,
-        products: allProducts,
         totalPages,
         currentPage: 1,
       }));

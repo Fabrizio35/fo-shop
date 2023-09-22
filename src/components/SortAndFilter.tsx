@@ -27,11 +27,11 @@ const SortAndFilter: React.FC = () => {
       {products.length ? (
         <div className="bg-fosemiDark">
           <select
-            name="FilterBy"
+            name="filter-by"
             value={selectedCategory}
             onChange={categoriesChangeHandler}
           >
-            <option value="filter-by">Filter by</option>
+            <option value="filter-by">All products</option>
             {categories?.map((category, index) => (
               <option key={index} value={category}>
                 {category.charAt(0).toUpperCase() + category.slice(1)}

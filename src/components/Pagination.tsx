@@ -25,11 +25,11 @@ const Pagination: React.FC = () => {
   return (
     <>
       {products.length ? (
-        <div className="flex my-20 justify-between">
+        <div className="flex my-16 justify-between h-10">
           <button
             onClick={prevHandler}
             disabled={currentPage === 1}
-            className="hover:bg-gray-200 disabled:cursor-not-allowed disabled:bg-transparent py-1 px-2 rounded-md disabled:text-gray-400 hover:transition-colors duration-300"
+            className="hover:bg-gray-400 hover:text-black bg-gray-500 text-fosemiLight disabled:cursor-not-allowed disabled:bg-gray-200 px-4 disabled:text-gray-400 hover:transition-colors duration-300 rounded-tl-md rounded-bl-md"
           >
             <ArrowLeftIcon />
           </button>
@@ -40,8 +40,8 @@ const Pagination: React.FC = () => {
               className={`${
                 pageNumber === currentPage
                   ? "text-folight bg-foorange"
-                  : "text-fodark hover:bg-gray-200"
-              } py-1 px-3 rounded-md text-xl hover:transition-colors duration-300`}
+                  : "text-fosemiLight hover:bg-fosemiDarkLight bg-fosemiDark"
+              } w-full text-xl hover:transition-colors duration-300`}
             >
               {pageNumber}
             </button>
@@ -49,7 +49,7 @@ const Pagination: React.FC = () => {
           <button
             onClick={nextHandler}
             disabled={currentPage >= totalPages}
-            className="hover:bg-gray-200 disabled:cursor-not-allowed disabled:bg-transparent py-1 px-2 rounded-md disabled:text-gray-400 hover:transition-colors duration-300"
+            className="hover:bg-gray-400 hover:text-black bg-gray-500 text-fosemiLight disabled:cursor-not-allowed disabled:bg-gray-200 px-4 disabled:text-gray-400 hover:transition-colors duration-300 rounded-tr-md rounded-br-md"
           >
             <ArrowRightIcon />
           </button>

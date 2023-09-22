@@ -33,7 +33,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
         {inCart ? (
           <button
             onClick={() => removeCart(product.id, product.price)}
-            className="flex items-center justify-center gap-2 bg-fodark text-red-500 hover:bg-fosemiDarkLight hover:text-red-300 rounded-lg transition-colors hover:transition-colors duration-500 "
+            className="flex items-center justify-center gap-2 bg-fodark text-red-500 hover:bg-fosemiDarkLight hover:text-red-300 rounded-md transition-colors hover:transition-colors duration-500 "
           >
             <ShoppingCartOffIcon size="22" />
             <span className="text-lg">Remove from cart</span>
@@ -41,7 +41,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
         ) : (
           <button
             onClick={() => addCart(product)}
-            className="flex items-center justify-center gap-2 bg-foorange text-folight hover:bg-foorangeLight rounded-lg transition-colors hover:transition-colors duration-500"
+            className="flex items-center justify-center gap-2 bg-foorange text-folight hover:bg-foorangeLight rounded-md transition-colors hover:transition-colors duration-500"
           >
             <ShoppingCartPlusIcon size="22" />
             <span className="text-lg">Add to cart</span>

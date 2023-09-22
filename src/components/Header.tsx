@@ -4,7 +4,6 @@ import {
   ShoppingCartIcon,
   HomeIcon,
   SearchIcon,
-  RefreshIcon,
 } from "@/Icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -15,18 +14,14 @@ import { useRouter } from "next/navigation";
 const Header: React.FC = () => {
   const path = usePathname();
   const router = useRouter();
-  const { products, setProductsByInput, resetProducts } = useProductStore();
+  const { products, searchProducts } = useProductStore();
 
   const [searchInput, setSearchInput] = useState<string>("");
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchInput(value);
-  };
-
-  const keyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const key = e.key;
-    if (key === "Enter") setProductsByInput(searchInput);
+    searchProducts(value);
   };
 
   useEffect(() => {
@@ -46,30 +41,17 @@ const Header: React.FC = () => {
           </Link>
 
           {path === "/" && (
-            <div className="flex items-center gap-2">
-              <div className="flex">
-                <input
-                  type="text"
-                  placeholder="Search for a product..."
-                  value={searchInput}
-                  onChange={changeHandler}
-                  onKeyDown={keyDownHandler}
-                  className="bg-foorangeFullLight border-2 border-foorangeFullLight h-8 w-60 text-fosemiDark focus:outline-none focus:border-fosemiDarkLight p-2 hover:border-fosemiDarkLight hover:transition-colors duration-300"
-                />
-                <button
-                  onClick={() => setProductsByInput(searchInput)}
-                  className="bg-foorangeFullLight text-fosemiDarkLight h-8 flex items-center px-2 cursor-pointer hover:text-fodark hover:transition-colors duration-300 border-2 border-foorangeFullLight hover:border-fosemiDarkLight"
-                >
-                  <SearchIcon />
-                </button>
+            <div className="flex items-center relative border-2 pl-8 border-foorangeFullLight hover:border-fosemiDarkLight hover:transition-colors duration-300 focus-within:border-fosemiDarkLight">
+              <div className="absolute left-0 text-fosemiDarkLight bg-foorangeFullLight h-full flex items-center px-2">
+                <SearchIcon />
               </div>
-              <button
-                onClick={() => resetProducts()}
-                className="flex items-center p-2 gap-1 bg-foorangeFullLight h-8 text-fosemiDarkLight hover:text-fodark border-2 border-foorangeFullLight hover:border-fosemiDarkLight hover:transition-colors duration-300"
-              >
-                <span>Return all products</span>
-                <RefreshIcon size="22" />
-              </button>
+              <input
+                type="text"
+                placeholder="Search for a product..."
+                value={searchInput}
+                onChange={changeHandler}
+                className="bg-foorangeFullLight h-8 w-60 text-fosemiDark focus:outline-none px-2"
+              />
             </div>
           )}
 
@@ -77,7 +59,7 @@ const Header: React.FC = () => {
             {path === "/" && (
               <Link
                 href="/cart"
-                className="flex items-center gap-1 py-1 px-2 rounded-lg hover:bg-foorangeLight hover:transition-colors duration-300"
+                className="flex items-center gap-1 py-1 px-2 rounded-md hover:bg-foorangeLight hover:transition-colors duration-300"
               >
                 <span className="text-lg font-medium">My cart</span>
                 <ShoppingCartIcon size="24" />
@@ -86,7 +68,7 @@ const Header: React.FC = () => {
             {path === "/cart" && (
               <Link
                 href="/"
-                className="flex items-center gap-1 py-1 px-2 rounded-lg hover:bg-foorangeLight hover:transition-colors duration-300"
+                className="flex items-center gap-1 py-1 px-2 rounded-md hover:bg-foorangeLight hover:transition-colors duration-300"
               >
                 <span className="text-base font-medium">Back home</span>
                 <HomeIcon size="22" />
