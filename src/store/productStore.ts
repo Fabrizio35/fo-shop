@@ -13,6 +13,8 @@ interface ProductStore {
   searchProducts: (input: string) => void;
   filterProductsByCategory: (category: string) => void;
   filterProductsByPrice: (price: number) => void;
+  orderAlpha: (order: string) => void;
+  resetProducts: () => void;
   addCart: (product: Product) => void;
   removeCart: (id: number, price: number) => void;
   setCurrentPage: (page: number) => void;
@@ -82,16 +84,46 @@ export const useProductStore = create<ProductStore>(
       }));
     },
     filterProductsByPrice: async (price: number) => {
-      let { products, allProducts, ITEMS_PER_PAGE } = get();
+      let { allProducts, ITEMS_PER_PAGE } = get();
       const filteredProducts = allProducts.filter(
         (product) => product.price >= price
       );
-      const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
+      const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
       set((state) => ({
         ...state,
         products: filteredProducts,
         currentPage: 1,
         totalPages,
+      }));
+    },
+    orderAlpha: (order: string) => {
+      const { ITEMS_PER_PAGE, allProducts } = get();
+      const orderedProducts: Product[] =
+        order === "az"
+          ? [...allProducts].sort((a, b) => {
+              return a.title.localeCompare(b.title);
+            })
+          : order === "za"
+          ? [...allProducts].sort((a, b) => {
+              return b.title.localeCompare(a.title);
+            })
+          : allProducts;
+      const totalPages = Math.ceil(orderedProducts.length / ITEMS_PER_PAGE);
+      set((state) => ({
+        ...state,
+        products: orderedProducts,
+        currentPage: 1,
+        totalPages,
+      }));
+    },
+    resetProducts: () => {
+      const { allProducts, ITEMS_PER_PAGE } = get();
+      const totalPages = Math.ceil(allProducts.length / ITEMS_PER_PAGE);
+      set((state) => ({
+        ...state,
+        products: allProducts,
+        totalPages,
+        currentPage: 1,
       }));
     },
     addCart: (product: Product) => {

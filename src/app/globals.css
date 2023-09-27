@@ -58,7 +58,7 @@ input[type="range"]::-ms-thumb {
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
-  background-color: #575f69;
+  background-color: #e4e4e4;
   height: 7px;
   border-radius: 20px;
 }
