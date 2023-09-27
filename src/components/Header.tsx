@@ -8,12 +8,10 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useProductStore } from "@/store/productStore";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const Header: React.FC = () => {
   const path = usePathname();
-  const router = useRouter();
   const { products, searchProducts } = useProductStore();
 
   const [searchInput, setSearchInput] = useState<string>("");
@@ -23,10 +21,6 @@ const Header: React.FC = () => {
     setSearchInput(value);
     searchProducts(value);
   };
-
-  useEffect(() => {
-    if (products.length <= 0) router.push("/");
-  }, []);
 
   return (
     <>

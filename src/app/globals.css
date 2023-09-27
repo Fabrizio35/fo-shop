@@ -1,3 +1,80 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #393e46;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #fc852b;
+  border-radius: 10px;
+}
+
+input[type="range"] {
+  cursor: pointer;
+  background-color: transparent;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"],
+input[type="range"]::-webkit-slider-runnable-track,
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  background-color: #ffc89f;
+  width: 22px;
+  height: 22px;
+  border: 3px solid #fc852b;
+  border-radius: 100%;
+  margin-top: -7.5px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  background-color: #ffc89f;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #fc852b;
+  border-radius: 100%;
+  margin-top: -9px;
+}
+
+input[type="range"]::-ms-thumb {
+  background-color: #ffc89f;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #fc852b;
+  border-radius: 100%;
+  margin-top: -9px;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: #575f69;
+  height: 7px;
+  border-radius: 20px;
+}
+
+input[type="range"]:focus::-webkit-slider-runnable-track {
+  outline: none;
+}
+
+input[type="range"]::-moz-range-track {
+  background-color: #575f69;
+  height: 7px;
+  border-radius: 20px;
+}
+
+input[type="range"]::-ms-track {
+  background-color: #575f69;
+  height: 7px;
+  border-radius: 20px;
+}

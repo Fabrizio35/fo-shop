@@ -13,13 +13,13 @@ const ProductCard: React.FC<Props> = ({ product }) => {
   const inCart = cart.find((prod) => prod.id === product.id);
 
   return (
-    <div className="flex flex-col bg-fosemiDark shadow-xl rounded-lg">
+    <div className="flex flex-col bg-fosemiDark shadow-lg shadow-gray-700/75 rounded-lg">
       <div className="relative aspect-video">
         <Image
           src={product.thumbnail}
           alt={`${product.title} image`}
           fill
-          priority={true}
+          priority
           sizes="(max-width: 1px) auto"
           className="object-cover rounded-t-lg"
         />

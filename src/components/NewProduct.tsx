@@ -11,19 +11,20 @@ const NewProduct: React.FC = () => {
   useEffect(() => {
     fetch("https://dummyjson.com/products/1")
       .then((res) => res.json())
-      .then((data) => setNewProduct(data));
+      .then((data) => setNewProduct(data))
+      .catch((err) => console.log(err));
   }, []);
 
   return (
     <>
       {products.length && newProduct ? (
-        <section className="flex mb-28">
+        <section className="flex mb-28 shadow-black shadow-lg rounded-bl-xl rounded-br-xl">
           <div className="relative h-96 w-2/4">
             <Image
               src={newProduct?.images[3]}
               alt={`${newProduct?.title} image`}
               fill
-              priority={true}
+              priority
               loading="eager"
               sizes="(max-width: 1px) auto"
               className="rounded-bl-xl border-t-2 border-l-2 border-b-2 border-gray-200 object-cover"
@@ -48,7 +49,7 @@ const NewProduct: React.FC = () => {
               src={newProduct?.images[0]}
               alt={`${newProduct?.title} image`}
               fill
-              priority={true}
+              priority
               loading="eager"
               sizes="(max-width: 1px) auto"
               className="rounded-br-xl object-cover"

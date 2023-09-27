@@ -12,6 +12,7 @@ interface ProductStore {
   getProducts: () => void;
   searchProducts: (input: string) => void;
   filterProductsByCategory: (category: string) => void;
+  filterProductsByPrice: (price: number) => void;
   addCart: (product: Product) => void;
   removeCart: (id: number, price: number) => void;
   setCurrentPage: (page: number) => void;
@@ -28,27 +29,50 @@ export const useProductStore = create<ProductStore>(
     ITEMS_PER_PAGE: 12,
     getProducts: async () => {
       const { ITEMS_PER_PAGE } = get();
-      const response = await fetch(`https://dummyjson.com/products?limit=99`);
-      const data = await response.json();
-      const allProducts = data.products;
-      const products = data.products;
-      const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
-      set((state) => ({
-        ...state,
-        products,
-        totalPages,
-        allProducts,
-      }));
+      try {
+        const response = await fetch(`https://dummyjson.com/products?limit=99`);
+        const data = await response.json();
+        const allProducts = data.products;
+        const products = data.products;
+        const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
+        set((state) => ({
+          ...state,
+          products,
+          totalPages,
+          allProducts,
+        }));
+      } catch (error) {
+        console.log(error);
+      }
     },
     searchProducts: async (input: string) => {
       const { ITEMS_PER_PAGE, allProducts } = get();
-      const response = await fetch(
-        `https://dummyjson.com/products/search?q=${input}`
+      try {
+        const response = await fetch(
+          `https://dummyjson.com/products/search?q=${input}`
+        );
+        const data = await response.json();
+        const productsRaw = data.products;
+        const products =
+          productsRaw.length <= 0 || input === "" ? allProducts : productsRaw;
+        const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
+        set((state) => ({
+          ...state,
+          products,
+          totalPages,
+          currentPage: 1,
+        }));
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    filterProductsByCategory: async (category: string) => {
+      const { ITEMS_PER_PAGE, allProducts } = get();
+      const filteredProducts = allProducts.filter(
+        (product) => product.category === category
       );
-      const data = await response.json();
-      const productsRaw = data.products;
       const products =
-        productsRaw.length <= 0 || input === "" ? allProducts : productsRaw;
+        filteredProducts.length <= 0 ? allProducts : filteredProducts;
       const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
       set((state) => ({
         ...state,
@@ -57,20 +81,17 @@ export const useProductStore = create<ProductStore>(
         currentPage: 1,
       }));
     },
-    filterProductsByCategory: async (category: string) => {
-      const { ITEMS_PER_PAGE, allProducts } = get();
-      const response = await fetch(
-        `https://dummyjson.com/products/category/${category}`
+    filterProductsByPrice: async (price: number) => {
+      let { products, allProducts, ITEMS_PER_PAGE } = get();
+      const filteredProducts = allProducts.filter(
+        (product) => product.price >= price
       );
-      const data = await response.json();
-      const productsRaw = data.products;
-      const products = productsRaw.length <= 0 ? allProducts : productsRaw;
       const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
       set((state) => ({
         ...state,
-        products,
-        totalPages,
+        products: filteredProducts,
         currentPage: 1,
+        totalPages,
       }));
     },
     addCart: (product: Product) => {
