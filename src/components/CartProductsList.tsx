@@ -9,11 +9,11 @@ const CartProductsList: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (products.length <= 0) router.push("/");
+    if (!products.length) router.push("/");
   }, []);
 
   return (
-    <div className="flex flex-col mt-10 gap-8">
+    <div className="flex flex-col mt-10 gap-8 w-11/12 sm:w-11/12 xl:w-full">
       {cart.map((product) => (
         <CartProductCard key={product.id} product={product} />
       ))}

@@ -25,7 +25,7 @@ const Pagination: React.FC = () => {
   return (
     <>
       {products.length ? (
-        <div className="flex my-16 justify-between h-10">
+        <div className="flex my-16 justify-evenly sm:justify-between h-10 w-11/12 sm:w-full">
           <button
             onClick={prevHandler}
             disabled={currentPage === 1}
@@ -41,7 +41,7 @@ const Pagination: React.FC = () => {
                 pageNumber === currentPage
                   ? "text-folight bg-foorange"
                   : "text-fosemiLight hover:bg-fosemiDarkLight bg-fosemiDark"
-              } w-full text-xl hover:transition-colors duration-300`}
+              } w-full text-xl hover:transition-colors duration-300 hidden sm:flex items-center justify-center`}
             >
               {pageNumber}
             </button>

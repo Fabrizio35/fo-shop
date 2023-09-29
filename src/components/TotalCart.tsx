@@ -7,7 +7,7 @@ const TotalCart: React.FC = () => {
   return (
     <>
       {cart.length ? (
-        <div className="flex justify-between w-full border-b-0 border-r-0 border-l-0 border-dashed border-t-4 border-fodark my-10">
+        <div className="flex justify-between w-11/12 sm:w-full border-b-0 border-r-0 border-l-0 border-dashed border-t-4 border-fodark my-10">
           <span className="text-3xl mt-4">Total:</span>
           <span className="text-3xl mt-4 font-semibold">${totalCart}</span>
         </div>

@@ -52,7 +52,7 @@ input[type="range"]::-ms-thumb {
   background-color: #ffc89f;
   width: 20px;
   height: 20px;
-  border: 3px solid #fc852b;
+  border: 3px solid #f96d00;
   border-radius: 100%;
   margin-top: -9px;
 }

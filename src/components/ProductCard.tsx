@@ -2,6 +2,7 @@ import { Product } from "@/types/types";
 import { ShoppingCartPlusIcon, ShoppingCartOffIcon } from "@/Icons";
 import { useProductStore } from "@/store/productStore";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   product: Product;
@@ -13,8 +14,11 @@ const ProductCard: React.FC<Props> = ({ product }) => {
   const inCart = cart.find((prod) => prod.id === product.id);
 
   return (
-    <div className="flex flex-col bg-fosemiDark shadow-lg shadow-gray-700/75 rounded-lg">
-      <div className="relative aspect-video">
+    <div className="flex flex-col bg-fosemiDark shadow-lg shadow-gray-700/75 rounded-lg hover:scale-105 transition-transform duration-300">
+      <Link
+        href={`/product/${product.id}`}
+        className="relative aspect-video hover:brightness-125"
+      >
         <Image
           src={product.thumbnail}
           alt={`${product.title} image`}
@@ -23,7 +27,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
           sizes="(max-width: 1px) auto"
           className="object-cover rounded-t-lg"
         />
-      </div>
+      </Link>
       <div className="flex flex-col justify-between bg-fosemiDark grow rounded-b-lg p-3 gap-4">
         <span className="text-xl text-folight">{product.title}</span>
         <span className="text-base text-gray-400">{product.brand}</span>

@@ -61,57 +61,61 @@ const SortAndFilter: React.FC = () => {
   return (
     <>
       {products.length ? (
-        <div className="flex justify-between items-center bg-fosemiDark p-4 rounded-md">
-          <button
-            onClick={resetFiltersHandler}
-            className="bg-fosemiLight text-red-500 font-medium py-1 px-3 hover:bg-folight hover:text-red-600 hover:transition-colors duration-300"
-          >
-            Reset Products
-          </button>
-          <div className="flex flex-col items-center gap-3">
-            <span className="text-lg text-fosemiLight">
-              Order alphabetically
-            </span>
-            <select
-              id="setOrder"
-              name="setOrder"
-              value={state.setOrder}
-              onChange={changeHandler}
-              className="bg-fosemiLight text-fosemiDark h-11 outline-none w-44 cursor-pointer font-medium"
+        <div className="w-11/12 sm:w-full flex flex-col justify-between items-center bg-fosemiDark p-4 rounded-md gap-10 lg:flex-row">
+          <div className="flex flex-col gap-5 sm:flex-row sm:gap-0 sm:items-center sm:justify-between w-full">
+            <button
+              onClick={resetFiltersHandler}
+              className="bg-fosemiLight text-foorange font-medium py-1 px-3 hover:bg-folight hover:text-foorangeDark hover:transition-colors duration-300"
             >
-              <option value="default" className="font-medium">
-                Default
-              </option>
-              <option value="az" className="font-medium">
-                A - Z
-              </option>
-              <option value="za" className="font-medium">
-                Z - A
-              </option>
-            </select>
-          </div>
-
-          <div className="flex flex-col items-center gap-3">
-            <span className="text-lg text-fosemiLight">Filter by category</span>
-            <select
-              id="filterCategory"
-              name="filterCategory"
-              value={state.filterCategory}
-              onChange={changeHandler}
-              className="bg-fosemiLight text-fosemiDark h-11 outline-none w-44 cursor-pointer font-medium"
-            >
-              <option value="all-products" className="font-medium">
-                All products
-              </option>
-              {categories?.map((category, index) => (
-                <option key={index} value={category} className="font-medium">
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
+              Clean filters
+            </button>
+            <div className="flex flex-col items-center gap-3">
+              <span className="text-lg text-fosemiLight">
+                Order alphabetically
+              </span>
+              <select
+                id="setOrder"
+                name="setOrder"
+                value={state.setOrder}
+                onChange={changeHandler}
+                className="bg-fosemiLight text-fosemiDark h-11 outline-none w-full sm:w-44 cursor-pointer font-medium"
+              >
+                <option value="default" className="font-medium">
+                  Default
                 </option>
-              ))}
-            </select>
+                <option value="az" className="font-medium">
+                  A - Z
+                </option>
+                <option value="za" className="font-medium">
+                  Z - A
+                </option>
+              </select>
+            </div>
+
+            <div className="flex flex-col items-center gap-3">
+              <span className="text-lg text-fosemiLight">
+                Filter by category
+              </span>
+              <select
+                id="filterCategory"
+                name="filterCategory"
+                value={state.filterCategory}
+                onChange={changeHandler}
+                className="bg-fosemiLight text-fosemiDark h-11 outline-none w-full sm:w-44 cursor-pointer font-medium"
+              >
+                <option value="all-products" className="font-medium">
+                  All products
+                </option>
+                {categories?.map((category, index) => (
+                  <option key={index} value={category} className="font-medium">
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center gap-3 w-full">
             <div className="flex gap-5 items-center">
               <label htmlFor="filterPrice" className="text-fosemiLight text-lg">
                 Price from:
@@ -129,7 +133,7 @@ const SortAndFilter: React.FC = () => {
               id="filterPrice"
               onChange={changeHandler}
               value={state.filterPrice}
-              className="w-96"
+              className="w-full sm:w-96 mb-5"
             />
           </div>
         </div>

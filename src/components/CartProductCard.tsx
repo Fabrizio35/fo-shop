@@ -21,7 +21,7 @@ const CartProductCard: React.FC<Props> = ({ product }) => {
 
   return (
     <div
-      className={`flex justify-between items-center bg-fosemiDark p-5 rounded-xl shadow-xl relative ${
+      className={`flex flex-col sm:flex-row gap-7 sm:gap-0 w-full sm:justify-between sm:items-center bg-fosemiDark p-5 rounded-xl shadow-xl relative ${
         isRemoved
           ? "opacity-0 transform translate-x-32 transition-opacity duration-300 ease-out"
           : null
@@ -40,12 +40,12 @@ const CartProductCard: React.FC<Props> = ({ product }) => {
           alt={`${product.title} image`}
           fill
           priority
-          sizes="(max-width: 0) auto"
+          sizes="(max-width: 1px) auto"
           className="object-cover rounded-md"
         />
       </div>
 
-      <div className="flex flex-col items-center gap-2">
+      <div className="flex flex-col sm:items-center gap-2 m-auto w-full">
         <span className="text-3xl text-folight">{product.title}</span>
         <span className="text-xl text-gray-400">{product.brand}</span>
       </div>

@@ -10,7 +10,7 @@ export default function MainApp() {
     <main className="bg-folight min-h-screen flex flex-col items-center">
       <Header />
       <Loading />
-      <section className="container mx-auto w-[1200px]">
+      <section className="flex flex-col items-center w-full sm:container sm:mx-auto sm:w-[1200px]">
         <NewProduct />
         <SortAndFilter />
         <Pagination />
