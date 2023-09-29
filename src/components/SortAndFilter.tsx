@@ -115,7 +115,7 @@ const SortAndFilter: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center gap-3 w-full lg:w-auto">
             <div className="flex gap-5 items-center">
               <label htmlFor="filterPrice" className="text-fosemiLight text-lg">
                 Price from:
@@ -133,7 +133,7 @@ const SortAndFilter: React.FC = () => {
               id="filterPrice"
               onChange={changeHandler}
               value={state.filterPrice}
-              className="w-full sm:w-96 mb-5"
+              className="w-full lg:w-96 mb-5"
             />
           </div>
         </div>
