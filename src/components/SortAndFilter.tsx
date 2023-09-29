@@ -62,7 +62,7 @@ const SortAndFilter: React.FC = () => {
     <>
       {products.length ? (
         <div className="w-11/12 sm:w-full flex flex-col justify-between items-center bg-fosemiDark p-4 rounded-md gap-10 lg:flex-row">
-          <div className="flex flex-col gap-5 sm:flex-row sm:gap-0 sm:items-center sm:justify-between w-full">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between w-full">
             <button
               onClick={resetFiltersHandler}
               className="bg-fosemiLight text-foorange font-medium py-1 px-3 hover:bg-folight hover:text-foorangeDark hover:transition-colors duration-300"
@@ -115,7 +115,7 @@ const SortAndFilter: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-3 w-full">
+          <div className="flex flex-col items-center gap-3">
             <div className="flex gap-5 items-center">
               <label htmlFor="filterPrice" className="text-fosemiLight text-lg">
                 Price from:
