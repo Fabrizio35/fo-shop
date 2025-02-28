@@ -1,7 +1,7 @@
-"use client";
-import { useProductStore } from "@/store/productStore";
-import { useState, useEffect } from "react";
-import { Categories } from "@/types/types";
+'use client'
+import { useProductStore } from '@/store/productStore'
+import { useState, useEffect } from 'react'
+import { Categories } from '@/types/types'
 
 const SortAndFilter: React.FC = () => {
   const {
@@ -10,53 +10,55 @@ const SortAndFilter: React.FC = () => {
     filterProductsByPrice,
     orderAlpha,
     resetProducts,
-  } = useProductStore();
+  } = useProductStore()
 
-  const [categories, setCategories] = useState<Categories[] | null>(null);
+  const [categories, setCategories] = useState<Categories[] | null>(null)
 
   const [state, setState] = useState({
-    filterCategory: "all-products",
+    filterCategory: 'all-products',
     filterPrice: 0,
-    setOrder: "default",
-  });
+    setOrder: 'default',
+  })
 
   const changeHandler = (
     e:
       | React.ChangeEvent<HTMLSelectElement>
       | React.ChangeEvent<HTMLInputElement>
   ) => {
-    const value = e.target.value;
-    const property = e.target.name;
-    const id = e.target.id;
-    const type = e.target.type;
+    const value = e.target.value
+    const property = e.target.name
+    const id = e.target.id
+    const type = e.target.type
 
     setState({
       ...state,
-      [property]: type === "range" ? parseInt(value) : value,
-    });
+      [property]: type === 'range' ? parseInt(value) : value,
+    })
 
-    id === "setOrder"
+    id === 'setOrder'
       ? orderAlpha(value)
-      : id === "filterCategory"
+      : id === 'filterCategory'
       ? filterProductsByCategory(value)
-      : filterProductsByPrice(parseInt(value));
-  };
+      : filterProductsByPrice(parseInt(value))
+  }
 
   const resetFiltersHandler = () => {
     setState({
-      filterCategory: "all-products",
+      filterCategory: 'all-products',
       filterPrice: 0,
-      setOrder: "default",
-    });
-    resetProducts();
-  };
+      setOrder: 'default',
+    })
+    resetProducts()
+  }
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products/categories")
+    fetch('https://dummyjson.com/products/categories')
       .then((res) => res.json())
       .then((data) => setCategories(data))
-      .catch((err) => console.log(err));
-  }, []);
+      .catch((err) => console.log(err))
+  }, [])
+
+  console.log(categories)
 
   return (
     <>
@@ -107,8 +109,13 @@ const SortAndFilter: React.FC = () => {
                   All products
                 </option>
                 {categories?.map((category, index) => (
-                  <option key={index} value={category} className="font-medium">
-                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                  <option
+                    key={index}
+                    value={category.name}
+                    className="font-medium"
+                  >
+                    {category.name.charAt(0).toUpperCase() +
+                      category.name.slice(1)}
                   </option>
                 ))}
               </select>
@@ -139,7 +146,7 @@ const SortAndFilter: React.FC = () => {
         </div>
       ) : null}
     </>
-  );
-};
+  )
+}
 
-export default SortAndFilter;
+export default SortAndFilter
