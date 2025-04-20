@@ -16,6 +16,8 @@ const ProductsList: React.FC = () => {
     getProducts();
   }, []);
 
+  console.log(products)
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 mb-14 w-11/12 sm:w-full">
       {finalProducts.map((product) => (

@@ -58,6 +58,8 @@ const SortAndFilter: React.FC = () => {
       .catch((err) => console.error(err))
   }, [])
 
+  console.log(categories)
+
   return (
     <>
       {products.length ? (
@@ -109,7 +111,7 @@ const SortAndFilter: React.FC = () => {
                 {categories?.map((category, index) => (
                   <option
                     key={index}
-                    value={category.name}
+                    value={category.slug}
                     className="font-medium"
                   >
                     {category.name.charAt(0).toUpperCase() +
