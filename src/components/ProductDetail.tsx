@@ -2,7 +2,7 @@
 import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Product } from "@/types/types";
-import { StarIcon, ShoppingCartOffIcon, ShoppingCartPlusIcon } from "@/Icons";
+import { ShoppingCartOffIcon, ShoppingCartPlusIcon } from "@/Icons";
 import { useProductStore } from "@/store/productStore";
 import Image from "next/image";
 
@@ -21,7 +21,7 @@ const ProductDetail: React.FC = () => {
     fetch(`https://dummyjson.com/products/${params}`)
       .then((res) => res.json())
       .then((data) => setProduct(data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   }, []);
 
   return (

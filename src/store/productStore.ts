@@ -44,7 +44,7 @@ export const useProductStore = create<ProductStore>(
           allProducts,
         }));
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     },
     searchProducts: async (input: string) => {
@@ -65,7 +65,7 @@ export const useProductStore = create<ProductStore>(
           currentPage: 1,
         }));
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     },
     filterProductsByCategory: async (category: string) => {

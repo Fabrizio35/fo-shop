@@ -55,10 +55,8 @@ const SortAndFilter: React.FC = () => {
     fetch('https://dummyjson.com/products/categories')
       .then((res) => res.json())
       .then((data) => setCategories(data))
-      .catch((err) => console.log(err))
+      .catch((err) => console.error(err))
   }, [])
-
-  console.log(categories)
 
   return (
     <>

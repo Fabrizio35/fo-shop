@@ -1,23 +1,26 @@
-"use client";
-import { useProductStore } from "@/store/productStore";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { Product } from "@/types/types";
+'use client'
+import { useProductStore } from '@/store/productStore'
+import { useEffect, useState } from 'react'
+import Image from 'next/image'
+import { Product } from '@/types/types'
 
 const NewProduct: React.FC = () => {
-  const { products } = useProductStore();
-  const [newProduct, setNewProduct] = useState<Product | null>(null);
+  const { products } = useProductStore()
+  const [newProduct, setNewProduct] = useState<Product | null>(null)
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products/1")
+    fetch('https://dummyjson.com/products/1')
       .then((res) => res.json())
       .then((data) => setNewProduct(data))
-      .catch((err) => console.log(err));
-  }, []);
+      .catch((err) => console.error(err))
+  }, [])
 
   return (
     <>
-      {products.length && newProduct ? (
+      {products.length &&
+      newProduct &&
+      newProduct.images?.[3] &&
+      newProduct.images?.[0] ? (
         <section className="w-11/12 sm:w-full flex mb-28 shadow-black shadow-lg rounded-bl-xl rounded-br-xl">
           <div className="relative h-96 w-full sm:w-2/4">
             <Image
@@ -61,7 +64,7 @@ const NewProduct: React.FC = () => {
         </section>
       ) : null}
     </>
-  );
-};
+  )
+}
 
-export default NewProduct;
+export default NewProduct
